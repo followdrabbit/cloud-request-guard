@@ -146,12 +146,52 @@ export const azureSubscriptions = [
   { id: 'sub-005', name: 'Security-Hub', env: 'Produção' },
 ];
 
+export const azureResourceGroups = [
+  { name: 'rg-analytics-prod', subscription: 'Corp-Production' },
+  { name: 'rg-webapp-prod', subscription: 'Corp-Production' },
+  { name: 'rg-data-staging', subscription: 'Corp-Staging' },
+  { name: 'rg-devops-tools', subscription: 'Corp-Development' },
+  { name: 'rg-security-mon', subscription: 'Security-Hub' },
+  { name: 'rg-ml-experiments', subscription: 'Corp-Development' },
+  { name: 'rg-networking-prod', subscription: 'Corp-Production' },
+];
+
+export const azureRoleDefinitions = [
+  'Reader', 'Contributor', 'Owner', 'User Access Administrator',
+  'Key Vault Secrets Officer', 'Key Vault Certificates Officer', 'Key Vault Crypto Officer',
+  'Storage Blob Data Reader', 'Storage Blob Data Contributor',
+  'Network Contributor', 'Virtual Machine Contributor',
+  'AcrPush', 'AcrPull', 'Monitoring Reader', 'Log Analytics Reader',
+  'Custom Role (especificar)',
+];
+
+export const azureKeyVaults = [
+  { name: 'kv-certs-prod', rg: 'rg-security-mon', subscription: 'Security-Hub' },
+  { name: 'kv-secrets-webapp', rg: 'rg-webapp-prod', subscription: 'Corp-Production' },
+  { name: 'kv-data-encryption', rg: 'rg-analytics-prod', subscription: 'Analytics-Production' },
+  { name: 'kv-devops-tokens', rg: 'rg-devops-tools', subscription: 'Corp-Development' },
+];
+
 export const ociCompartments = [
   { id: 'ocid1.compartment.oc1..finance', name: 'cmp-financeiro', env: 'Produção' },
   { id: 'ocid1.compartment.oc1..dev', name: 'cmp-desenvolvimento', env: 'Desenvolvimento' },
   { id: 'ocid1.compartment.oc1..security', name: 'cmp-seguranca', env: 'Produção' },
   { id: 'ocid1.compartment.oc1..network', name: 'cmp-network', env: 'Produção' },
   { id: 'ocid1.compartment.oc1..staging', name: 'cmp-staging', env: 'Homologação' },
+  { id: 'ocid1.compartment.oc1..apps', name: 'cmp-aplicacoes', env: 'Produção' },
+  { id: 'ocid1.compartment.oc1..shared', name: 'cmp-shared-services', env: 'Produção' },
+];
+
+export const ociGroups = [
+  'grp-finops-users', 'grp-dev-team', 'grp-security-admins',
+  'grp-network-admins', 'grp-dba-team', 'grp-app-deployers',
+  'grp-audit-readers', 'grp-cloud-admins',
+];
+
+export const ociVaults = [
+  { name: 'vault-master-prod', compartment: 'cmp-seguranca' },
+  { name: 'vault-data-encryption', compartment: 'cmp-financeiro' },
+  { name: 'vault-app-secrets', compartment: 'cmp-aplicacoes' },
 ];
 
 export const adGroups = [
