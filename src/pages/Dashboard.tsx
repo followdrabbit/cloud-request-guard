@@ -3,32 +3,31 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from 'recharts';
 import { tickets, providers } from '@/data/mockData';
-import { ProviderBadge, StatusBadge, CriticalityBadge } from '@/components/Badges';
+import { ProviderBadge, StatusBadge, CriticalityBadge, TypeBadge } from '@/components/Badges';
 import {
   AlertTriangle, Clock, CheckCircle2, FileText, Plus, List, Settings,
-  ArrowRight, TrendingUp
+  ArrowRight, TrendingUp, ClipboardCheck, AlertOctagon
 } from 'lucide-react';
 
 const spring = { type: 'spring' as const, duration: 0.4, bounce: 0 };
 
 const chartData = [
-  { name: 'AWS', value: 6, color: 'hsl(24, 95%, 53%)' },
-  { name: 'Azure', value: 3, color: 'hsl(207, 90%, 54%)' },
-  { name: 'OCI', value: 2, color: 'hsl(350, 79%, 60%)' },
+  { name: 'AWS', value: tickets.filter(t => t.provider === 'aws').length, color: 'hsl(24, 95%, 53%)' },
+  { name: 'Azure', value: tickets.filter(t => t.provider === 'azure').length, color: 'hsl(207, 90%, 54%)' },
+  { name: 'OCI', value: tickets.filter(t => t.provider === 'oci').length, color: 'hsl(350, 79%, 60%)' },
 ];
 
 const summaryCards = [
   { label: 'Total de Chamados', value: tickets.length, icon: FileText, accent: 'text-foreground' },
   { label: 'Aguardando Aprovação', value: tickets.filter(t => t.status === 'Aguardando Aprovação').length, icon: Clock, accent: 'text-warning', pulse: true },
-  { label: 'Em Preenchimento', value: tickets.filter(t => t.status === 'Em Preenchimento').length, icon: TrendingUp, accent: 'text-info' },
-  { label: 'Críticos em Aberto', value: tickets.filter(t => t.criticality === 'Crítica' && t.status !== 'Concluído').length, icon: AlertTriangle, accent: 'text-destructive', highlight: true },
+  { label: 'Auditorias Ativas', value: tickets.filter(t => t.type === 'audit' && t.status !== 'Concluído').length, icon: ClipboardCheck, accent: 'text-info' },
+  { label: 'Breaking Glass', value: tickets.filter(t => t.type === 'breaking-glass').length, icon: AlertOctagon, accent: 'text-destructive', highlight: true },
 ];
 
 export default function Dashboard() {
   return (
     <Layout>
       <div className="space-y-8">
-        {/* Header */}
         <div>
           <h1 className="text-foreground">Bem-vindo, Ana Souza.</h1>
           <p className="text-muted-foreground mt-1">Visão geral do portal de governança cloud.</p>
@@ -58,33 +57,22 @@ export default function Dashboard() {
 
         {/* Quick Actions + Chart */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Quick Actions */}
           <div className="bg-card rounded-xl p-6 card-shadow space-y-4">
             <h2 className="text-foreground">Atalhos Rápidos</h2>
             <div className="space-y-2">
               {providers.map(p => (
-                <Link
-                  key={p.id}
-                  to={`/catalog/${p.id}`}
-                  className={`flex items-center gap-3 px-4 py-3 rounded-lg border border-border hover:card-shadow-hover transition-all group`}
-                >
+                <Link key={p.id} to={`/catalog/${p.id}`} className="flex items-center gap-3 px-4 py-3 rounded-lg border border-border hover:card-shadow-hover transition-all group">
                   <Plus className={`w-4 h-4 text-${p.color}`} />
                   <span className="text-sm font-medium flex-1">Novo Chamado {p.shortName}</span>
                   <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:translate-x-0.5 transition-transform" />
                 </Link>
               ))}
-              <Link
-                to="/tickets"
-                className="flex items-center gap-3 px-4 py-3 rounded-lg border border-border hover:card-shadow-hover transition-all group"
-              >
+              <Link to="/tickets" className="flex items-center gap-3 px-4 py-3 rounded-lg border border-border hover:card-shadow-hover transition-all group">
                 <List className="w-4 h-4 text-muted-foreground" />
                 <span className="text-sm font-medium flex-1">Consultar Chamados</span>
                 <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:translate-x-0.5 transition-transform" />
               </Link>
-              <Link
-                to="/admin"
-                className="flex items-center gap-3 px-4 py-3 rounded-lg border border-border hover:card-shadow-hover transition-all group"
-              >
+              <Link to="/admin" className="flex items-center gap-3 px-4 py-3 rounded-lg border border-border hover:card-shadow-hover transition-all group">
                 <Settings className="w-4 h-4 text-muted-foreground" />
                 <span className="text-sm font-medium flex-1">Administração</span>
                 <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:translate-x-0.5 transition-transform" />
@@ -92,7 +80,6 @@ export default function Dashboard() {
             </div>
           </div>
 
-          {/* Chart */}
           <div className="lg:col-span-2 bg-card rounded-xl p-6 card-shadow">
             <h2 className="text-foreground mb-4">Chamados por Provedor</h2>
             <div className="h-[240px]">
@@ -101,15 +88,7 @@ export default function Dashboard() {
                   <CartesianGrid strokeDasharray="3 3" stroke="hsl(240, 5%, 90%)" />
                   <XAxis dataKey="name" tick={{ fontSize: 13, fill: 'hsl(240, 4%, 46%)' }} />
                   <YAxis tick={{ fontSize: 13, fill: 'hsl(240, 4%, 46%)' }} />
-                  <Tooltip
-                    contentStyle={{
-                      backgroundColor: 'hsl(0, 0%, 100%)',
-                      border: 'none',
-                      borderRadius: '8px',
-                      boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
-                      fontSize: '13px',
-                    }}
-                  />
+                  <Tooltip contentStyle={{ backgroundColor: 'hsl(0, 0%, 100%)', border: 'none', borderRadius: '8px', boxShadow: '0 4px 12px rgba(0,0,0,0.1)', fontSize: '13px' }} />
                   <Bar dataKey="value" radius={[6, 6, 0, 0]}>
                     {chartData.map((entry, index) => (
                       <Cell key={`cell-${index}`} fill={entry.color} />
@@ -135,6 +114,7 @@ export default function Dashboard() {
                 <tr className="text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                   <th className="px-6 py-3">ID</th>
                   <th className="px-6 py-3">Título</th>
+                  <th className="px-6 py-3">Tipo</th>
                   <th className="px-6 py-3">Provedor</th>
                   <th className="px-6 py-3">Status</th>
                   <th className="px-6 py-3">Criticidade</th>
@@ -142,17 +122,18 @@ export default function Dashboard() {
                 </tr>
               </thead>
               <tbody>
-                {tickets.slice(0, 6).map((ticket, i) => (
+                {tickets.slice(0, 8).map((ticket, i) => (
                   <motion.tr
                     key={ticket.id}
                     initial={{ opacity: 0, y: 5 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ ...spring, delay: i * 0.03 }}
-                    className="border-b border-border last:border-0 hover:bg-muted/50 transition-colors cursor-pointer"
+                    className={`border-b border-border last:border-0 hover:bg-muted/50 transition-colors cursor-pointer ${ticket.type === 'breaking-glass' ? 'bg-destructive/[0.02]' : ''}`}
                     onClick={() => window.location.href = `/tickets/${ticket.id}`}
                   >
                     <td className="px-6 py-4 text-sm font-mono tabular-nums text-muted-foreground">{ticket.id}</td>
                     <td className="px-6 py-4 text-sm font-medium max-w-xs truncate">{ticket.title}</td>
+                    <td className="px-6 py-4"><TypeBadge type={ticket.type} /></td>
                     <td className="px-6 py-4"><ProviderBadge provider={ticket.provider} /></td>
                     <td className="px-6 py-4"><StatusBadge status={ticket.status} /></td>
                     <td className="px-6 py-4"><CriticalityBadge criticality={ticket.criticality} /></td>
@@ -166,7 +147,7 @@ export default function Dashboard() {
           </div>
         </div>
 
-        {/* Pendencies panel */}
+        {/* Pendencies */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div className="bg-card rounded-xl p-6 card-shadow">
             <h2 className="text-foreground mb-4 flex items-center gap-2">
@@ -174,11 +155,11 @@ export default function Dashboard() {
             </h2>
             <div className="space-y-3">
               {tickets.filter(t => t.status === 'Aguardando Aprovação').map(t => (
-                <div key={t.id} className="flex items-center gap-3 px-3 py-2 rounded-lg bg-warning/5 border border-warning/10">
-                  <Clock className="w-4 h-4 text-warning shrink-0" />
+                <div key={t.id} className={`flex items-center gap-3 px-3 py-2 rounded-lg ${t.type === 'breaking-glass' ? 'bg-destructive/5 border border-destructive/10' : 'bg-warning/5 border border-warning/10'}`}>
+                  {t.type === 'breaking-glass' ? <AlertOctagon className="w-4 h-4 text-destructive shrink-0" /> : <Clock className="w-4 h-4 text-warning shrink-0" />}
                   <div className="min-w-0 flex-1">
                     <p className="text-sm font-medium truncate">{t.title}</p>
-                    <p className="text-xs text-muted-foreground">{t.id} · Aguardando desde {new Date(t.updatedAt).toLocaleDateString('pt-BR')}</p>
+                    <p className="text-xs text-muted-foreground">{t.id} · {t.type === 'breaking-glass' ? 'Breaking Glass' : t.type === 'audit' ? 'Auditoria' : 'Padrão'}</p>
                   </div>
                   <ProviderBadge provider={t.provider} />
                 </div>

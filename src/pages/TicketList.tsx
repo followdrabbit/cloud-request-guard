@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { tickets } from '@/data/mockData';
-import { ProviderBadge, StatusBadge, CriticalityBadge, EnvironmentBadge } from '@/components/Badges';
+import { ProviderBadge, StatusBadge, CriticalityBadge, EnvironmentBadge, TypeBadge, PostReviewBadge } from '@/components/Badges';
 import { Search, Filter } from 'lucide-react';
 
 const spring = { type: 'spring' as const, duration: 0.4, bounce: 0 };
@@ -14,6 +14,7 @@ export default function TicketList() {
   const [statusFilter, setStatusFilter] = useState('');
   const [critFilter, setCritFilter] = useState('');
   const [envFilter, setEnvFilter] = useState('');
+  const [typeFilter, setTypeFilter] = useState('');
 
   const filtered = tickets.filter(t => {
     if (search && !t.title.toLowerCase().includes(search.toLowerCase()) && !t.id.toLowerCase().includes(search.toLowerCase())) return false;
@@ -21,6 +22,7 @@ export default function TicketList() {
     if (statusFilter && t.status !== statusFilter) return false;
     if (critFilter && t.criticality !== critFilter) return false;
     if (envFilter && t.environment !== envFilter) return false;
+    if (typeFilter && t.type !== typeFilter) return false;
     return true;
   });
 
@@ -38,17 +40,17 @@ export default function TicketList() {
             <Filter className="w-4 h-4 text-muted-foreground" />
             <span className="text-sm font-medium">Filtros</span>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-3">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-              <input
-                type="text"
-                placeholder="Buscar por ID ou título..."
-                value={search}
-                onChange={e => setSearch(e.target.value)}
-                className="input-field w-full pl-9"
-              />
+              <input type="text" placeholder="Buscar por ID ou título..." value={search} onChange={e => setSearch(e.target.value)} className="input-field w-full pl-9" />
             </div>
+            <select value={typeFilter} onChange={e => setTypeFilter(e.target.value)} className="input-field">
+              <option value="">Todos os tipos</option>
+              <option value="standard">Solicitação padrão</option>
+              <option value="audit">Auditoria</option>
+              <option value="breaking-glass">Breaking Glass</option>
+            </select>
             <select value={providerFilter} onChange={e => setProviderFilter(e.target.value)} className="input-field">
               <option value="">Todos provedores</option>
               <option value="aws">AWS</option>
@@ -88,6 +90,7 @@ export default function TicketList() {
                 <tr className="text-left text-xs font-medium text-muted-foreground uppercase tracking-wider border-b border-border">
                   <th className="px-5 py-3">ID</th>
                   <th className="px-5 py-3">Título</th>
+                  <th className="px-5 py-3">Tipo</th>
                   <th className="px-5 py-3">Provedor</th>
                   <th className="px-5 py-3">Categoria</th>
                   <th className="px-5 py-3">Solicitante</th>
@@ -104,7 +107,7 @@ export default function TicketList() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ ...spring, delay: i * 0.02 }}
-                    className="border-b border-border last:border-0 hover:bg-muted/50 transition-colors"
+                    className={`border-b border-border last:border-0 hover:bg-muted/50 transition-colors ${ticket.type === 'breaking-glass' ? 'bg-destructive/[0.02]' : ''}`}
                   >
                     <td className="px-5 py-3">
                       <Link to={`/tickets/${ticket.id}`} className="text-sm font-mono tabular-nums text-info hover:underline">
@@ -112,6 +115,12 @@ export default function TicketList() {
                       </Link>
                     </td>
                     <td className="px-5 py-3 text-sm font-medium max-w-[250px] truncate">{ticket.title}</td>
+                    <td className="px-5 py-3">
+                      <TypeBadge type={ticket.type} />
+                      {ticket.postReviewStatus && ticket.postReviewStatus !== 'Concluída' && (
+                        <PostReviewBadge status={ticket.postReviewStatus} />
+                      )}
+                    </td>
                     <td className="px-5 py-3"><ProviderBadge provider={ticket.provider} /></td>
                     <td className="px-5 py-3 text-sm text-muted-foreground">{ticket.categoryName}</td>
                     <td className="px-5 py-3 text-sm">{ticket.requester}</td>

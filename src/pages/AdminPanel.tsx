@@ -2,19 +2,21 @@ import { Layout } from '@/components/Layout';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { categories, providers } from '@/data/mockData';
-import { CriticalityBadge } from '@/components/Badges';
-import { Settings, Layers, FileText, CheckSquare, ShieldCheck, Users, BookTemplate, Edit, ToggleRight, Plus } from 'lucide-react';
+import { CriticalityBadge, TypeBadge } from '@/components/Badges';
+import { Settings, Layers, FileText, CheckSquare, ShieldCheck, Users, BookTemplate, Edit, ToggleRight, Plus, ClipboardCheck, AlertOctagon, Clock } from 'lucide-react';
 
 const spring = { type: 'spring' as const, duration: 0.4, bounce: 0 };
 
 const adminSections = [
   { id: 'providers', label: 'Provedores', icon: Layers, count: 3 },
   { id: 'categories', label: 'Categorias', icon: FileText, count: categories.length },
-  { id: 'fields', label: 'Campos', icon: Edit, count: 156 },
-  { id: 'validations', label: 'Validações', icon: CheckSquare, count: 87 },
-  { id: 'requirements', label: 'Requisitos', icon: ShieldCheck, count: 42 },
-  { id: 'approvals', label: 'Aprovações', icon: Users, count: 28 },
-  { id: 'templates', label: 'Templates', icon: BookTemplate, count: 15 },
+  { id: 'fields', label: 'Campos', icon: Edit, count: 218 },
+  { id: 'validations', label: 'Validações', icon: CheckSquare, count: 132 },
+  { id: 'requirements', label: 'Requisitos', icon: ShieldCheck, count: 64 },
+  { id: 'approvals', label: 'Aprovações', icon: Users, count: 42 },
+  { id: 'templates', label: 'Templates', icon: BookTemplate, count: 28 },
+  { id: 'audit-config', label: 'Auditoria', icon: ClipboardCheck, count: 9 },
+  { id: 'bg-config', label: 'Breaking Glass', icon: AlertOctagon, count: 8 },
 ];
 
 export default function AdminPanel() {
@@ -32,7 +34,7 @@ export default function AdminPanel() {
         </div>
 
         {/* Section cards */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-3">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-9 gap-3">
           {adminSections.map((section) => (
             <button
               key={section.id}
@@ -69,6 +71,7 @@ export default function AdminPanel() {
                   <thead>
                     <tr className="text-left text-xs font-medium text-muted-foreground uppercase tracking-wider border-b border-border">
                       <th className="px-5 py-3">Categoria</th>
+                      <th className="px-5 py-3">Tipo</th>
                       <th className="px-5 py-3">Provedor</th>
                       <th className="px-5 py-3">Criticidade</th>
                       <th className="px-5 py-3">Campos</th>
@@ -82,11 +85,12 @@ export default function AdminPanel() {
                     {categories.map((cat) => {
                       const p = providers.find(pr => pr.id === cat.provider);
                       return (
-                        <tr key={cat.id} className="border-b border-border last:border-0 hover:bg-muted/50 transition-colors">
+                        <tr key={cat.id} className={`border-b border-border last:border-0 hover:bg-muted/50 transition-colors ${cat.type === 'breaking-glass' ? 'bg-destructive/[0.02]' : ''}`}>
                           <td className="px-5 py-3">
                             <p className="text-sm font-medium">{cat.name}</p>
                             <p className="text-xs text-muted-foreground truncate max-w-[200px]">{cat.description}</p>
                           </td>
+                          <td className="px-5 py-3"><TypeBadge type={cat.type} /></td>
                           <td className="px-5 py-3 text-sm">{p?.shortName}</td>
                           <td className="px-5 py-3"><CriticalityBadge criticality={cat.criticality} /></td>
                           <td className="px-5 py-3 text-sm tabular-nums">{cat.fieldsCount}</td>
@@ -100,7 +104,6 @@ export default function AdminPanel() {
                           <td className="px-5 py-3">
                             <div className="flex gap-1">
                               <button className="px-2 py-1 text-xs rounded bg-muted text-muted-foreground hover:bg-muted/80">Editar</button>
-                              <button className="px-2 py-1 text-xs rounded bg-destructive/10 text-destructive hover:bg-destructive/20">Desativar</button>
                             </div>
                           </td>
                         </tr>
@@ -131,7 +134,54 @@ export default function AdminPanel() {
             </div>
           )}
 
-          {activeSection !== 'categories' && activeSection !== 'providers' && (
+          {activeSection === 'audit-config' && (
+            <div className="p-6 space-y-4">
+              <h2>Configurações de Auditoria</h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {[
+                  { title: 'Templates de Auditoria', desc: 'Modelos pré-configurados para auditoria de recursos, permissões e conformidade.', count: 6 },
+                  { title: 'Regras de Validação', desc: 'Validações automáticas para escopo, justificativa e classificação de dados.', count: 18 },
+                  { title: 'Checklists de Saída', desc: 'Formatos de saída esperados: relatório executivo, técnico, inventário, matriz.', count: 4 },
+                ].map((item, i) => (
+                  <div key={i} className="rounded-xl border border-info/20 p-5 bg-info/[0.02]">
+                    <ClipboardCheck className="w-5 h-5 text-info mb-2" />
+                    <h3 className="text-sm font-semibold">{item.title}</h3>
+                    <p className="text-xs text-muted-foreground mt-1">{item.desc}</p>
+                    <p className="text-lg font-bold tabular-nums mt-2">{item.count}</p>
+                    <button className="mt-3 px-3 py-1.5 text-xs rounded bg-muted text-muted-foreground">Configurar</button>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {activeSection === 'bg-config' && (
+            <div className="p-6 space-y-4">
+              <h2>Configurações de Breaking Glass</h2>
+              <div className="bg-destructive/5 border border-destructive/20 rounded-lg p-3 mb-2 flex items-center gap-2">
+                <AlertOctagon className="w-4 h-4 text-destructive" />
+                <p className="text-xs text-muted-foreground">Configurações de acesso emergencial. Alterações requerem aprovação de CISO.</p>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                {[
+                  { title: 'Duração Máxima', desc: 'Limites de duração por tipo de acesso emergencial.', icon: Clock, count: 5 },
+                  { title: 'Regras de Aprovação', desc: 'Cadeia de aprovação emergencial e escalação.', icon: ShieldCheck, count: 8 },
+                  { title: 'Checklists Pós-Revisão', desc: 'Itens obrigatórios na revisão após uso de breaking glass.', icon: CheckSquare, count: 7 },
+                  { title: 'Alertas e Banners', desc: 'Mensagens de alerta e avisos visuais configuráveis.', icon: AlertOctagon, count: 6 },
+                ].map((item, i) => (
+                  <div key={i} className="rounded-xl border border-destructive/20 p-5 bg-destructive/[0.02]">
+                    <item.icon className="w-5 h-5 text-destructive mb-2" />
+                    <h3 className="text-sm font-semibold">{item.title}</h3>
+                    <p className="text-xs text-muted-foreground mt-1">{item.desc}</p>
+                    <p className="text-lg font-bold tabular-nums mt-2">{item.count}</p>
+                    <button className="mt-3 px-3 py-1.5 text-xs rounded bg-muted text-muted-foreground">Configurar</button>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {!['categories', 'providers', 'audit-config', 'bg-config'].includes(activeSection) && (
             <div className="p-6">
               <h2 className="mb-3">{adminSections.find(s => s.id === activeSection)?.label}</h2>
               <div className="bg-muted/50 rounded-xl p-8 text-center">
