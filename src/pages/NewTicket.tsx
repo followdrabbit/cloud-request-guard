@@ -76,6 +76,28 @@ export default function NewTicket() {
   const isAWSProfile = categoryId === 'aws-profile';
   const isAWSAccount = categoryId === 'aws-account';
 
+  // Azure specifics
+  const isAzureRole = categoryId === 'azure-role';
+  const isAzureSP = categoryId === 'azure-sp';
+  const isAzureMI = categoryId === 'azure-mi';
+  const isAzureKV = categoryId === 'azure-kv';
+  const isAzureRG = categoryId === 'azure-rg';
+  const isAzureSub = categoryId === 'azure-sub';
+  const isAzureNSG = categoryId === 'azure-nsg';
+  const isAzureRBAC = categoryId === 'azure-rbac';
+  const isAzureSpecific = isAzureRole || isAzureSP || isAzureMI || isAzureKV || isAzureRG || isAzureSub || isAzureNSG || isAzureRBAC;
+
+  // OCI specifics
+  const isOCIPolicy = categoryId === 'oci-policy';
+  const isOCIDynGroup = categoryId === 'oci-dyngroup';
+  const isOCIGroup = categoryId === 'oci-group';
+  const isOCICompartment = categoryId === 'oci-compartment';
+  const isOCIVault = categoryId === 'oci-vault';
+  const isOCINSG = categoryId === 'oci-nsg';
+  const isOCIOS = categoryId === 'oci-os';
+  const isOCIIAM = categoryId === 'oci-iam';
+  const isOCISpecific = isOCIPolicy || isOCIDynGroup || isOCIGroup || isOCICompartment || isOCIVault || isOCINSG || isOCIOS || isOCIIAM;
+
   const handleSubmit = () => {
     navigate(`/tickets/CLD-REQ-84721`);
   };
