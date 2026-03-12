@@ -3,7 +3,9 @@ import { Link, useParams, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { categories, providers, awsAccounts, azureSubscriptions, azureResourceGroups, azureRoleDefinitions, azureKeyVaults, ociCompartments, ociGroups, ociVaults, adGroups, psets } from '@/data/mockData';
-import { ArrowLeft, ArrowRight, Check, AlertTriangle, Info } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Check, AlertTriangle, Info, AlertOctagon } from 'lucide-react';
+import { AuditForm } from '@/components/forms/AuditForm';
+import { BreakingGlassForm } from '@/components/forms/BreakingGlassForm';
 
 const spring = { type: 'spring' as const, duration: 0.4, bounce: 0 };
 
