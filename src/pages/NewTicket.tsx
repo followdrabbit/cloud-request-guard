@@ -73,6 +73,9 @@ export default function NewTicket() {
 
   if (!provider || !category) return <Layout><p>Categoria não encontrada.</p></Layout>;
 
+  const isAudit = category.type === 'audit';
+  const isBreakingGlass = category.type === 'breaking-glass';
+
   const isAWSRole = categoryId === 'aws-role';
   const isAWSPset = categoryId === 'aws-pset';
   const isAWSProfile = categoryId === 'aws-profile';
