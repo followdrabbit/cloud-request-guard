@@ -2,7 +2,7 @@ import { Layout } from '@/components/Layout';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { categories, providers, awsAccounts, azureSubscriptions, ociCompartments, adGroups, psets } from '@/data/mockData';
+import { categories, providers, awsAccounts, azureSubscriptions, azureResourceGroups, azureRoleDefinitions, azureKeyVaults, ociCompartments, ociGroups, ociVaults, adGroups, psets } from '@/data/mockData';
 import { ArrowLeft, ArrowRight, Check, AlertTriangle, Info } from 'lucide-react';
 
 const spring = { type: 'spring' as const, duration: 0.4, bounce: 0 };
