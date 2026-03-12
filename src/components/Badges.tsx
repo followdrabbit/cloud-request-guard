@@ -1,4 +1,4 @@
-import { Provider } from '@/data/mockData';
+import { Provider, CategoryType } from '@/data/mockData';
 
 const providerConfig: Record<Provider, { bg: string; text: string; label: string }> = {
   aws: { bg: 'bg-aws/10', text: 'text-aws', label: 'AWS' },
@@ -63,6 +63,60 @@ export function EnvironmentBadge({ env }: { env: string }) {
   return (
     <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold ${c.bg} ${c.text}`}>
       {env}
+    </span>
+  );
+}
+
+// ============ NEW BADGES ============
+
+const typeConfig: Record<CategoryType, { bg: string; text: string; label: string; border?: string }> = {
+  'standard': { bg: 'bg-muted', text: 'text-muted-foreground', label: 'Padrão' },
+  'audit': { bg: 'bg-info/10', text: 'text-info', label: 'Auditoria', border: 'ring-1 ring-info/20' },
+  'breaking-glass': { bg: 'bg-destructive/10', text: 'text-destructive', label: 'Breaking Glass', border: 'ring-1 ring-destructive/20' },
+};
+
+export function TypeBadge({ type }: { type: CategoryType }) {
+  const config = typeConfig[type];
+  if (type === 'standard') return null;
+  return (
+    <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-bold ${config.bg} ${config.text} ${config.border || ''}`}>
+      {config.label}
+    </span>
+  );
+}
+
+export function PostReviewBadge({ status }: { status?: 'Pendente' | 'Em Análise' | 'Concluída' }) {
+  if (!status) return null;
+  const config: Record<string, { bg: string; text: string }> = {
+    'Pendente': { bg: 'bg-warning/10', text: 'text-warning' },
+    'Em Análise': { bg: 'bg-info/10', text: 'text-info' },
+    'Concluída': { bg: 'bg-success/10', text: 'text-success' },
+  };
+  const c = config[status] || config['Pendente'];
+  return (
+    <span className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-xs font-semibold ${c.bg} ${c.text}`}>
+      Pós-Revisão: {status}
+    </span>
+  );
+}
+
+export function ScopeBadge({ label }: { label: string }) {
+  return (
+    <span className="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold bg-info/10 text-info ring-1 ring-info/20">
+      {label}
+    </span>
+  );
+}
+
+export function AlertBadge({ label, variant = 'warning' }: { label: string; variant?: 'warning' | 'destructive' | 'info' }) {
+  const styles = {
+    warning: 'bg-warning/10 text-warning ring-1 ring-warning/20',
+    destructive: 'bg-destructive/10 text-destructive ring-1 ring-destructive/20',
+    info: 'bg-info/10 text-info ring-1 ring-info/20',
+  };
+  return (
+    <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-bold ${styles[variant]}`}>
+      {label}
     </span>
   );
 }
