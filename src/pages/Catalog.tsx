@@ -1,6 +1,6 @@
 import { Layout } from '@/components/Layout';
 import { Link } from 'react-router-dom';
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import { providers, crossCuttingCategories, categories } from '@/data/mockData';
 import { ArrowRight, Cloud, ClipboardCheck, AlertOctagon } from 'lucide-react';
 

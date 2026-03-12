@@ -1,5 +1,5 @@
 import { Routes, Route, useLocation } from 'react-router-dom';
-import { AnimatePresence } from 'motion/react';
+import { AnimatePresence } from 'framer-motion';
 import Dashboard from '@/pages/Dashboard';
 import Catalog from '@/pages/Catalog';
 import ProviderCategories from '@/pages/ProviderCategories';

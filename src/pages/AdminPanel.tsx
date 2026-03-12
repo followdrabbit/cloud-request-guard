@@ -1,6 +1,6 @@
 import { Layout } from '@/components/Layout';
 import { useState } from 'react';
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import { categories, providers } from '@/data/mockData';
 import { CriticalityBadge, TypeBadge } from '@/components/Badges';
 import { Settings, Layers, FileText, CheckSquare, ShieldCheck, Users, BookTemplate, Edit, ToggleRight, Plus, ClipboardCheck, AlertOctagon, Clock } from 'lucide-react';

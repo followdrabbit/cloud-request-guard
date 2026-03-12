@@ -1,7 +1,7 @@
 import { Layout } from '@/components/Layout';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import { tickets } from '@/data/mockData';
 import { ProviderBadge, StatusBadge, CriticalityBadge, EnvironmentBadge, TypeBadge, PostReviewBadge } from '@/components/Badges';
 import { Search, Filter } from 'lucide-react';
