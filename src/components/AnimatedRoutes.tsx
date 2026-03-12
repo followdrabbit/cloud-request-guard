@@ -18,6 +18,7 @@ export function AnimatedRoutes() {
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Dashboard />} />
         <Route path="/catalog" element={<Catalog />} />
+        <Route path="/catalog/cross/:typeId" element={<ProviderCategories />} />
         <Route path="/catalog/:providerId" element={<ProviderCategories />} />
         <Route path="/catalog/:providerId/:categoryId" element={<CategoryDetail />} />
         <Route path="/catalog/:providerId/:categoryId/new" element={<NewTicket />} />
