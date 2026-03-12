@@ -156,12 +156,16 @@ export default function NewTicket() {
             transition={spring}
             className="bg-card rounded-xl p-6 card-shadow"
           >
+            {/* Audit / Breaking Glass forms */}
+            {(isAudit || isBreakingGlass) ? (
+              isAudit ? <AuditForm step={currentStep} providerId={providerId!} category={category} /> :
+              <BreakingGlassForm step={currentStep} providerId={providerId!} category={category} />
+            ) : (
+            <>
             {/* Step 1: General Data */}
             {currentStep === 1 && (
               <div className="space-y-5">
                 <h2>Dados Gerais</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="md:col-span-2">
                     <FormField label="Título da Solicitação" required error={showErrors ? 'Campo obrigatório' : undefined}>
                       <InputField placeholder="Ex: Criação de Role para Lambda de integração" />
                     </FormField>
