@@ -1,4 +1,5 @@
 import { Search, Bell, User } from 'lucide-react';
+import { ThemeToggle } from './ThemeToggle';
 
 export function TopBar() {
   return (
@@ -16,7 +17,8 @@ export function TopBar() {
       </div>
 
       {/* Right */}
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-2">
+        <ThemeToggle />
         <button className="relative p-2 rounded-lg hover:bg-muted transition-colors">
           <Bell className="w-5 h-5 text-muted-foreground" />
           <span className="absolute top-1 right-1 w-2 h-2 rounded-full bg-destructive animate-pulse-dot" />
