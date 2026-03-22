@@ -31,7 +31,7 @@ export function AppSidebar() {
         </div>
         {!collapsed && (
           <div className="min-w-0">
-            <p className="text-sm font-semibold text-sidebar-primary truncate">My ITSM</p>
+            <p className="text-sm font-semibold text-sidebar-primary truncate">My ISTM</p>
             <p className="text-xs text-sidebar-foreground/60 truncate">Portal AWS Governance</p>
           </div>
         )}
@@ -74,7 +74,7 @@ export function AppSidebar() {
         <div className="p-4 border-t border-sidebar-border">
           <div className="flex items-center gap-2 text-xs text-sidebar-foreground/50">
             <Shield className="w-4 h-4" />
-            <span>My ITSM v3.0</span>
+            <span>My ISTM v3.0</span>
           </div>
         </div>
       )}

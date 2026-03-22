@@ -881,7 +881,7 @@ function renderAdrReadme() {
   const list = TARGETS.map(([file]) => `- ${path.parse(file).name}`).join('\n');
   return [
     '# ADRs do Projeto', '',
-    'Este diretorio concentra os Architecture Decision Records (ADRs) do Cloud Request Guard.', '',
+    'Este diretorio concentra os Architecture Decision Records (ADRs) do My ISTM.', '',
     '- ADR geral: ADR_DECISOES_GERAIS_ISM_AWS', `- ADRs por tipo de solicitacao: ${TARGETS.length} documentos`, '',
     '## Estrutura padrao de cada ADR',
     '- Contexto da tela/acao',

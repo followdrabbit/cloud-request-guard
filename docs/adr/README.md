@@ -1,6 +1,6 @@
 # ADRs do Projeto
 
-Este diretorio concentra os Architecture Decision Records (ADRs) do Cloud Request Guard.
+Este diretorio concentra os Architecture Decision Records (ADRs) do My ISTM.
 
 - ADR geral: ADR_DECISOES_GERAIS_ISM_AWS
 - ADR complementar de taxonomia: ADR_TAXONOMIA_NOMENCLATURA_AWS
