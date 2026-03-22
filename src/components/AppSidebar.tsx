@@ -23,12 +23,12 @@ export function AppSidebar() {
       {/* Logo */}
       <div className="h-16 flex items-center px-4 gap-3 border-b border-sidebar-border">
         <div className="w-8 h-8 rounded-lg bg-aws/20 flex items-center justify-center shrink-0">
-          <span className="text-sm font-bold text-aws">A</span>
+          <span className="text-sm font-bold text-aws">M</span>
         </div>
         {!collapsed && (
           <div className="min-w-0">
-            <p className="text-sm font-semibold text-sidebar-primary truncate">AWS Service Requests</p>
-            <p className="text-xs text-sidebar-foreground/60 truncate">Portal de Governança</p>
+            <p className="text-sm font-semibold text-sidebar-primary truncate">My ITSM</p>
+            <p className="text-xs text-sidebar-foreground/60 truncate">Portal AWS Governance</p>
           </div>
         )}
       </div>
@@ -70,7 +70,7 @@ export function AppSidebar() {
         <div className="p-4 border-t border-sidebar-border">
           <div className="flex items-center gap-2 text-xs text-sidebar-foreground/50">
             <Shield className="w-4 h-4" />
-            <span>AWS Governance v3.0</span>
+            <span>My ITSM v3.0</span>
           </div>
         </div>
       )}
