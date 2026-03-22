@@ -1,16 +1,20 @@
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
-  LayoutDashboard, BookOpen, List, ClipboardCheck, AlertOctagon, Settings, ChevronLeft, ChevronRight, Shield
+  LayoutDashboard, BookOpen, List, ClipboardCheck, AlertOctagon, Settings, ChevronLeft, ChevronRight, Shield, FileText, User, Users, Search
 } from 'lucide-react';
 import { useState } from 'react';
 
 const navItems = [
   { label: 'Dashboard', icon: LayoutDashboard, path: '/' },
   { label: 'Catálogo AWS', icon: BookOpen, path: '/catalog' },
+  { label: 'Levantamento AWS', icon: Search, path: '/catalog/aws-information' },
+  { label: 'Usuários IAM AWS', icon: User, path: '/catalog/aws-iam-users' },
+  { label: 'Grupos IAM AWS', icon: Users, path: '/catalog/aws-iam-groups' },
+  { label: 'Policy AWS', icon: FileText, path: '/catalog/aws-policies' },
   { label: 'Meus Chamados', icon: List, path: '/tickets' },
-  { label: 'Auditoria e Revisões', icon: ClipboardCheck, path: '/catalog/aws-audit' },
-  { label: 'Acesso Emergencial', icon: AlertOctagon, path: '/catalog/aws-emergency' },
+  { label: 'Auditoria AWS', icon: ClipboardCheck, path: '/catalog/aws-audit' },
+  { label: 'Breaking Glass AWS', icon: AlertOctagon, path: '/catalog/aws-emergency' },
   { label: 'Administração', icon: Settings, path: '/admin' },
 ];
 

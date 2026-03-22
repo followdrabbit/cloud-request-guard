@@ -1,0 +1,291 @@
+{
+  "generatedAt": "2026-03-18T23:54:15.517Z",
+  "baseUrl": "http://127.0.0.1:4173",
+  "screenshotMode": "empty-filled-review",
+  "categories": [
+    {
+      "categoryId": "aws-information",
+      "overview": "docs/screenshots/categories/aws-information/overview.png",
+      "requestTypes": [
+        {
+          "requestTypeId": "info-create",
+          "states": {
+            "empty": "docs/screenshots/categories/aws-information/info-create-empty.png",
+            "filled": "docs/screenshots/categories/aws-information/info-create-filled.png",
+            "review": "docs/screenshots/categories/aws-information/info-create-review.png"
+          }
+        }
+      ]
+    },
+    {
+      "categoryId": "aws-iam-users",
+      "overview": "docs/screenshots/categories/aws-iam-users/overview.png",
+      "requestTypes": [
+        {
+          "requestTypeId": "iam-user-create",
+          "states": {
+            "empty": "docs/screenshots/categories/aws-iam-users/iam-user-create-empty.png",
+            "filled": "docs/screenshots/categories/aws-iam-users/iam-user-create-filled.png",
+            "review": "docs/screenshots/categories/aws-iam-users/iam-user-create-review.png"
+          }
+        },
+        {
+          "requestTypeId": "iam-user-update",
+          "states": {
+            "empty": "docs/screenshots/categories/aws-iam-users/iam-user-update-empty.png",
+            "filled": "docs/screenshots/categories/aws-iam-users/iam-user-update-filled.png",
+            "review": "docs/screenshots/categories/aws-iam-users/iam-user-update-review.png"
+          }
+        },
+        {
+          "requestTypeId": "iam-user-delete",
+          "states": {
+            "empty": "docs/screenshots/categories/aws-iam-users/iam-user-delete-empty.png",
+            "filled": "docs/screenshots/categories/aws-iam-users/iam-user-delete-filled.png",
+            "review": "docs/screenshots/categories/aws-iam-users/iam-user-delete-review.png"
+          }
+        }
+      ]
+    },
+    {
+      "categoryId": "aws-iam-groups",
+      "overview": "docs/screenshots/categories/aws-iam-groups/overview.png",
+      "requestTypes": [
+        {
+          "requestTypeId": "iam-group-create",
+          "states": {
+            "empty": "docs/screenshots/categories/aws-iam-groups/iam-group-create-empty.png",
+            "filled": "docs/screenshots/categories/aws-iam-groups/iam-group-create-filled.png",
+            "review": "docs/screenshots/categories/aws-iam-groups/iam-group-create-review.png"
+          }
+        },
+        {
+          "requestTypeId": "iam-group-update",
+          "states": {
+            "empty": "docs/screenshots/categories/aws-iam-groups/iam-group-update-empty.png",
+            "filled": "docs/screenshots/categories/aws-iam-groups/iam-group-update-filled.png",
+            "review": "docs/screenshots/categories/aws-iam-groups/iam-group-update-review.png"
+          }
+        },
+        {
+          "requestTypeId": "iam-group-delete",
+          "states": {
+            "empty": "docs/screenshots/categories/aws-iam-groups/iam-group-delete-empty.png",
+            "filled": "docs/screenshots/categories/aws-iam-groups/iam-group-delete-filled.png",
+            "review": "docs/screenshots/categories/aws-iam-groups/iam-group-delete-review.png"
+          }
+        }
+      ]
+    },
+    {
+      "categoryId": "aws-policies",
+      "overview": "docs/screenshots/categories/aws-policies/overview.png",
+      "requestTypes": [
+        {
+          "requestTypeId": "policy-create",
+          "states": {
+            "empty": "docs/screenshots/categories/aws-policies/policy-create-empty.png",
+            "filled": "docs/screenshots/categories/aws-policies/policy-create-filled.png",
+            "review": "docs/screenshots/categories/aws-policies/policy-create-review.png"
+          }
+        },
+        {
+          "requestTypeId": "policy-update",
+          "states": {
+            "empty": "docs/screenshots/categories/aws-policies/policy-update-empty.png",
+            "filled": "docs/screenshots/categories/aws-policies/policy-update-filled.png",
+            "review": "docs/screenshots/categories/aws-policies/policy-update-review.png"
+          }
+        },
+        {
+          "requestTypeId": "policy-delete",
+          "states": {
+            "empty": "docs/screenshots/categories/aws-policies/policy-delete-empty.png",
+            "filled": "docs/screenshots/categories/aws-policies/policy-delete-filled.png",
+            "review": "docs/screenshots/categories/aws-policies/policy-delete-review.png"
+          }
+        }
+      ]
+    },
+    {
+      "categoryId": "aws-audit",
+      "overview": "docs/screenshots/categories/aws-audit/overview.png",
+      "requestTypes": [
+        {
+          "requestTypeId": "audit-create",
+          "states": {
+            "empty": "docs/screenshots/categories/aws-audit/audit-create-empty.png",
+            "filled": "docs/screenshots/categories/aws-audit/audit-create-filled.png",
+            "review": "docs/screenshots/categories/aws-audit/audit-create-review.png"
+          }
+        },
+        {
+          "requestTypeId": "audit-update",
+          "states": {
+            "empty": "docs/screenshots/categories/aws-audit/audit-update-empty.png",
+            "filled": "docs/screenshots/categories/aws-audit/audit-update-filled.png",
+            "review": "docs/screenshots/categories/aws-audit/audit-update-review.png"
+          }
+        },
+        {
+          "requestTypeId": "audit-close",
+          "states": {
+            "empty": "docs/screenshots/categories/aws-audit/audit-close-empty.png",
+            "filled": "docs/screenshots/categories/aws-audit/audit-close-filled.png",
+            "review": "docs/screenshots/categories/aws-audit/audit-close-review.png"
+          }
+        }
+      ]
+    },
+    {
+      "categoryId": "aws-emergency",
+      "overview": "docs/screenshots/categories/aws-emergency/overview.png",
+      "requestTypes": [
+        {
+          "requestTypeId": "bg-create",
+          "states": {
+            "empty": "docs/screenshots/categories/aws-emergency/bg-create-empty.png",
+            "filled": "docs/screenshots/categories/aws-emergency/bg-create-filled.png",
+            "review": "docs/screenshots/categories/aws-emergency/bg-create-review.png"
+          }
+        },
+        {
+          "requestTypeId": "bg-update",
+          "states": {
+            "empty": "docs/screenshots/categories/aws-emergency/bg-update-empty.png",
+            "filled": "docs/screenshots/categories/aws-emergency/bg-update-filled.png",
+            "review": "docs/screenshots/categories/aws-emergency/bg-update-review.png"
+          }
+        },
+        {
+          "requestTypeId": "bg-revoke",
+          "states": {
+            "empty": "docs/screenshots/categories/aws-emergency/bg-revoke-empty.png",
+            "filled": "docs/screenshots/categories/aws-emergency/bg-revoke-filled.png",
+            "review": "docs/screenshots/categories/aws-emergency/bg-revoke-review.png"
+          }
+        }
+      ]
+    },
+    {
+      "categoryId": "aws-accounts",
+      "overview": "docs/screenshots/categories/aws-accounts/overview.png",
+      "requestTypes": [
+        {
+          "requestTypeId": "account-create",
+          "states": {
+            "empty": "docs/screenshots/categories/aws-accounts/account-create-empty.png",
+            "filled": "docs/screenshots/categories/aws-accounts/account-create-filled.png",
+            "review": "docs/screenshots/categories/aws-accounts/account-create-review.png"
+          }
+        },
+        {
+          "requestTypeId": "account-update",
+          "states": {
+            "empty": "docs/screenshots/categories/aws-accounts/account-update-empty.png",
+            "filled": "docs/screenshots/categories/aws-accounts/account-update-filled.png",
+            "review": "docs/screenshots/categories/aws-accounts/account-update-review.png"
+          }
+        },
+        {
+          "requestTypeId": "account-delete",
+          "states": {
+            "empty": "docs/screenshots/categories/aws-accounts/account-delete-empty.png",
+            "filled": "docs/screenshots/categories/aws-accounts/account-delete-filled.png",
+            "review": "docs/screenshots/categories/aws-accounts/account-delete-review.png"
+          }
+        }
+      ]
+    },
+    {
+      "categoryId": "aws-profiles",
+      "overview": "docs/screenshots/categories/aws-profiles/overview.png",
+      "requestTypes": [
+        {
+          "requestTypeId": "profile-create",
+          "states": {
+            "empty": "docs/screenshots/categories/aws-profiles/profile-create-empty.png",
+            "filled": "docs/screenshots/categories/aws-profiles/profile-create-filled.png",
+            "review": "docs/screenshots/categories/aws-profiles/profile-create-review.png"
+          }
+        },
+        {
+          "requestTypeId": "profile-update",
+          "states": {
+            "empty": "docs/screenshots/categories/aws-profiles/profile-update-empty.png",
+            "filled": "docs/screenshots/categories/aws-profiles/profile-update-filled.png",
+            "review": "docs/screenshots/categories/aws-profiles/profile-update-review.png"
+          }
+        },
+        {
+          "requestTypeId": "profile-delete",
+          "states": {
+            "empty": "docs/screenshots/categories/aws-profiles/profile-delete-empty.png",
+            "filled": "docs/screenshots/categories/aws-profiles/profile-delete-filled.png",
+            "review": "docs/screenshots/categories/aws-profiles/profile-delete-review.png"
+          }
+        }
+      ]
+    },
+    {
+      "categoryId": "aws-psets",
+      "overview": "docs/screenshots/categories/aws-psets/overview.png",
+      "requestTypes": [
+        {
+          "requestTypeId": "pset-create",
+          "states": {
+            "empty": "docs/screenshots/categories/aws-psets/pset-create-empty.png",
+            "filled": "docs/screenshots/categories/aws-psets/pset-create-filled.png",
+            "review": "docs/screenshots/categories/aws-psets/pset-create-review.png"
+          }
+        },
+        {
+          "requestTypeId": "pset-update",
+          "states": {
+            "empty": "docs/screenshots/categories/aws-psets/pset-update-empty.png",
+            "filled": "docs/screenshots/categories/aws-psets/pset-update-filled.png",
+            "review": "docs/screenshots/categories/aws-psets/pset-update-review.png"
+          }
+        },
+        {
+          "requestTypeId": "pset-delete",
+          "states": {
+            "empty": "docs/screenshots/categories/aws-psets/pset-delete-empty.png",
+            "filled": "docs/screenshots/categories/aws-psets/pset-delete-filled.png",
+            "review": "docs/screenshots/categories/aws-psets/pset-delete-review.png"
+          }
+        }
+      ]
+    },
+    {
+      "categoryId": "aws-roles",
+      "overview": "docs/screenshots/categories/aws-roles/overview.png",
+      "requestTypes": [
+        {
+          "requestTypeId": "role-create",
+          "states": {
+            "empty": "docs/screenshots/categories/aws-roles/role-create-empty.png",
+            "filled": "docs/screenshots/categories/aws-roles/role-create-filled.png",
+            "review": "docs/screenshots/categories/aws-roles/role-create-review.png"
+          }
+        },
+        {
+          "requestTypeId": "role-update",
+          "states": {
+            "empty": "docs/screenshots/categories/aws-roles/role-update-empty.png",
+            "filled": "docs/screenshots/categories/aws-roles/role-update-filled.png",
+            "review": "docs/screenshots/categories/aws-roles/role-update-review.png"
+          }
+        },
+        {
+          "requestTypeId": "role-delete",
+          "states": {
+            "empty": "docs/screenshots/categories/aws-roles/role-delete-empty.png",
+            "filled": "docs/screenshots/categories/aws-roles/role-delete-filled.png",
+            "review": "docs/screenshots/categories/aws-roles/role-delete-review.png"
+          }
+        }
+      ]
+    }
+  ]
+}

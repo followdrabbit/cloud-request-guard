@@ -15,9 +15,13 @@ function getIcon(name: string) {
 
 const categoryColors: Record<string, { border: string; accent: string }> = {
   'aws-accounts': { border: 'border-aws/30 hover:border-aws/60', accent: 'bg-aws/10 text-aws' },
+  'aws-information': { border: 'border-info/30 hover:border-info/60', accent: 'bg-info/10 text-info' },
   'aws-profiles': { border: 'border-info/30 hover:border-info/60', accent: 'bg-info/10 text-info' },
+  'aws-iam-users': { border: 'border-info/30 hover:border-info/60', accent: 'bg-info/10 text-info' },
+  'aws-iam-groups': { border: 'border-aws/30 hover:border-aws/60', accent: 'bg-aws/10 text-aws' },
   'aws-psets': { border: 'border-aws/30 hover:border-aws/60', accent: 'bg-aws/10 text-aws' },
   'aws-roles': { border: 'border-info/30 hover:border-info/60', accent: 'bg-info/10 text-info' },
+  'aws-policies': { border: 'border-warning/30 hover:border-warning/60', accent: 'bg-warning/10 text-warning' },
   'aws-audit': { border: 'border-info/30 hover:border-info/60', accent: 'bg-info/10 text-info' },
   'aws-emergency': { border: 'border-destructive/30 hover:border-destructive/60', accent: 'bg-destructive/10 text-destructive' },
 };
@@ -32,7 +36,7 @@ export default function Catalog() {
       <div className="space-y-8">
         <div>
           <h1>Catálogo de Serviços AWS</h1>
-          <p className="text-muted-foreground mt-1">Selecione uma categoria para abrir uma nova solicitação.</p>
+          <p className="text-muted-foreground mt-1">Selecione uma categoria para abrir uma nova solicitação de atividade executada por Segurança da Informação.</p>
         </div>
 
         {/* Standard Categories */}

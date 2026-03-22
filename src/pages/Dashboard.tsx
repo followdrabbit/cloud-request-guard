@@ -19,6 +19,8 @@ const summaryCards = [
 ];
 
 export default function Dashboard() {
+  const quickActionCategories = catalog.filter(cat => cat.type === 'standard');
+
   return (
     <Layout>
       <div className="space-y-8">
@@ -54,7 +56,7 @@ export default function Dashboard() {
           <div className="bg-card rounded-xl p-6 card-shadow space-y-4">
             <h2 className="text-foreground">Ações Rápidas</h2>
             <div className="space-y-2">
-              {catalog.slice(0, 4).map(cat => (
+              {quickActionCategories.map(cat => (
                 <Link key={cat.id} to={`/catalog/${cat.id}`} className="flex items-center gap-3 px-4 py-3 rounded-lg border border-border hover:card-shadow-hover transition-all group">
                   <Plus className="w-4 h-4 text-aws" />
                   <span className="text-sm font-medium flex-1 truncate">{cat.name}</span>

@@ -1,0 +1,52 @@
+# ADRs do Projeto
+
+Este diretorio concentra os Architecture Decision Records (ADRs) do Cloud Request Guard.
+
+- ADR geral: ADR_DECISOES_GERAIS_ISM_AWS
+- ADR complementar de taxonomia: ADR_TAXONOMIA_NOMENCLATURA_AWS
+- ADRs por tipo de solicitacao: 28 documentos
+
+## Estrutura padrao de cada ADR
+- Contexto da tela/acao
+- Itens de decisao com secao propria (explicacao + exemplo)
+- Campos da tela (somente acao atual)
+- Detalhamento dos campos da tela
+- Requisitos aplicaveis a tela
+- Padroes aplicaveis a tela
+- Exemplos da tela
+- Tooltips dos campos (texto, exemplo e links AWS quando aplicavel)
+- Consequencias
+
+## Lista de ADRs por solicitacao
+- ADR_CRIACAO_CONTA_AWS
+- ADR_ALTERACAO_CONTA_AWS
+- ADR_REMOCAO_CONTA_AWS
+- ADR_LEVANTAMENTO_INFORMACOES_AWS
+- ADR_CRIACAO_PERFIL_ACESSO_AWS
+- ADR_ALTERACAO_PERFIL_ACESSO_AWS
+- ADR_REMOCAO_PERFIL_ACESSO_AWS
+- ADR_CRIACAO_USUARIO_IAM_AWS
+- ADR_ALTERACAO_USUARIO_IAM_AWS
+- ADR_REMOCAO_USUARIO_IAM_AWS
+- ADR_CRIACAO_GRUPO_IAM_AWS
+- ADR_ALTERACAO_GRUPO_IAM_AWS
+- ADR_REMOCAO_GRUPO_IAM_AWS
+- ADR_CRIACAO_PSET_AWS
+- ADR_ALTERACAO_PSET_AWS
+- ADR_REMOCAO_PSET_AWS
+- ADR_CRIACAO_ROLE_AWS
+- ADR_ALTERACAO_ROLE_AWS
+- ADR_REMOCAO_ROLE_AWS
+- ADR_CRIACAO_POLICY_AWS
+- ADR_ALTERACAO_POLICY_AWS
+- ADR_REMOCAO_POLICY_AWS
+- ADR_ABERTURA_AUDITORIA_AWS
+- ADR_ALTERACAO_AUDITORIA_AWS
+- ADR_ENCERRAMENTO_AUDITORIA_AWS
+- ADR_CONCESSAO_BREAKING_GLASS_AWS
+- ADR_ALTERACAO_BREAKING_GLASS_AWS
+- ADR_REVOGACAO_BREAKING_GLASS_AWS
+
+## ADRs complementares
+- ADR_DECISOES_GERAIS_ISM_AWS
+- ADR_TAXONOMIA_NOMENCLATURA_AWS

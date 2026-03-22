@@ -1,0 +1,123 @@
+Cloud Request Guard - LLM Context File
+Last updated: 2026-03-18
+
+1) Project purpose
+- Web ISM/ITSM catalog for AWS security requests executed by Security team (SI).
+- Frontend prototype with mocked data and documented decision records (ADR).
+
+2) Stack and runtime
+- React 18 + TypeScript + Vite
+- Tailwind + shadcn/ui + Radix
+- Tests: Vitest
+- Main commands:
+  - npm install
+  - npm run dev
+  - npm run build
+  - npm run test
+  - npm run lint
+  - npm run screenshots:update
+
+3) Source-of-truth files
+- Catalog/domain data: src/data/mockData.ts
+- Request form behavior and tooltips: src/pages/NewTicket.tsx
+- ADR generator (do not manually maintain ADR docs): scripts/generate-adr-docs.mjs
+- Screenshots generator: scripts/capture-category-screenshots.mjs
+- Human docs: README.md, docs/adr/README.md, docs/screenshots/README.md
+
+4) Generated artifacts (important)
+- docs/adr/*.md are generated from scripts/generate-adr-docs.mjs
+- If business rules/fields/tooltips change, regenerate ADRs:
+  - node scripts/generate-adr-docs.mjs
+- Category screenshots are generated and versioned:
+  - npm run screenshots:update
+- If a category is created/updated/removed, or if any request screen changes, update screenshots in the same change set.
+
+5) Core business rules (current baseline)
+- Single-screen form + mandatory review step before final submission.
+- One request per ticket (no batch operations per ticket).
+- Category/action context is implicit by route; user should not fill it manually.
+- For flows that require existing account, exactly one AWS account is selected.
+- Environment is implicit from selected account.
+- Account selector label must show account id + name + environment.
+- Avoid duplicated account summary blocks below selectors.
+- Generic fields that add no value (example: free title) must not be required.
+- Optional common fields in all flows:
+  - Comentarios
+  - Upload de Anexos (optional single upload, supports evidence + technical files)
+- Policy flows scope (current phase):
+  - Only IAM Managed Policy is covered in create/update/delete flows (implicit type, no selector field).
+  - In create, user provides Actions + Resources (required) and Conditions (optional) instead of writing raw JSON.
+  - In Resources, user should provide exact resource names (or ARNs).
+  - Other policy types are out of scope for this phase.
+
+6) IAM/taxonomy rules
+- Create flows use standardized naming with fixed prefix/suffix and user fills only variable segment.
+- Resource prefixes:
+  - AWS_AC_... for AWS Account
+  - AWS_RL_... for Role
+  - AWS_PL_... for Policy
+  - AWS_GR_... for Group
+  - AWS_PS_... for PSET
+  - AWS_US_... for IAM service user
+- Personal local IAM users are not part of standard flow.
+  - If needed, treat as exception flow with explicit justification and reinforced approval.
+- IAM user create permission modes:
+  - create without initial permissions, or
+  - include user in existing IAM group(s), or
+  - attach existing policy(ies), or
+  - combine existing group(s) + policy attach.
+- IAM service users access is fixed to Programatico and there is no "Tipo de Acesso" field in user-create flow.
+- IAM user update actions:
+  - add policy, remove policy, add group, remove group, rotate key.
+  - for rotate key action, current key is disabled and deleted after 7 days if no reactivation request is opened.
+- IAM group create permission modes:
+  - create without initial permissions, or
+  - attach existing policy(ies).
+- IAM group update actions:
+  - add policy, remove policy, add user, remove user.
+- PSET create accepts one or more policies (dynamic list in form).
+- PSET update actions:
+  - add policy, remove policy, add account, remove account.
+- Update/Delete flows accept free resource identifier (name or ARN) for legacy resources not following new taxonomy.
+
+7) Role-specific rules
+- Create Role: one account per request, role name built by taxonomy for selected environment.
+- User can create role:
+  - without initial permissions, or
+  - attaching existing policies
+- Trusted Entity and Principal(s) must be coherent; multiple principals are allowed.
+- Review screen must show what will be created/changed/removed, including role name(s), target env/account, and attached policies (if any).
+
+8) Tooltip documentation policy
+- Tooltips must exist for all fields in request forms.
+- Tooltip content should include:
+  - what is expected
+  - concrete example
+  - AWS documentation link when applicable
+- ADRs must document tooltips per request type.
+
+9) ADR policy
+- One ADR per request type (create/update/delete or equivalent).
+- Each ADR must focus only on its own screen/action.
+- Keep sections detailed: decisions, fields, requirements, standards, examples, tooltips.
+
+10) Screenshot policy
+- For each category and request action, maintain:
+  - empty form screenshot
+  - filled form screenshot (all possible fields filled with mocked data)
+  - review screen screenshot
+- Always use a product/account context that contains DEV/HML/PRD when required by the scenario.
+
+11) Change workflow for AI agents
+- Step 1: update behavior in UI/domain files.
+- Step 2: update generator scripts if docs/screenshots are impacted.
+- Step 3: regenerate ADRs/screenshots when required.
+- Step 4: run lint/tests/build when feasible.
+- Step 5: summarize changed files + residual risks.
+
+12) Quality gates before closing a task
+- No contradiction between UI behavior and ADR documentation.
+- No contradiction between README rules and implemented forms.
+- No duplicated or unnecessary fields in forms.
+- Links in tooltips remain clickable on hover interaction.
+- UTF-8 text should be readable (avoid mojibake).
